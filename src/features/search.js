@@ -1,0 +1,9 @@
+import { database } from '../database/database.js';
+import { escapeHTML, dateLabel } from '../utils/helpers.js';
+export async function searchEverywhere(term){const q=`%${term}%`;const [files,notes,bookmarks,events,tasks]=await Promise.all([
+ database.query("SELECT id,name AS title,'file' AS kind,updated_at FROM items WHERE deleted_at IS NULL AND name LIKE ? LIMIT 20",[q]),
+ database.query("SELECT id,title,'note' AS kind,updated_at FROM notes WHERE deleted_at IS NULL AND (title LIKE ? OR content LIKE ?) LIMIT 20",[q,q]),
+ database.query("SELECT id,title,'bookmark' AS kind,updated_at FROM bookmarks WHERE deleted_at IS NULL AND (title LIKE ? OR url LIKE ? OR description LIKE ?) LIMIT 20",[q,q,q]),
+ database.query("SELECT id,title,'event' AS kind,updated_at FROM events WHERE deleted_at IS NULL AND (title LIKE ? OR description LIKE ?) LIMIT 20",[q,q]),
+ database.query("SELECT id,title,'task' AS kind,updated_at FROM tasks WHERE deleted_at IS NULL AND (title LIKE ? OR description LIKE ?) LIMIT 20",[q,q])
+ ]);const rows=[...files,...notes,...bookmarks,...events,...tasks].sort((a,b)=>b.updated_at.localeCompare(a.updated_at));return `<div class="page-heading"><div><div class="eyebrow">LOCAL INDEX</div><h1>Search</h1><p>Search stays on this device.</p></div></div><input id="global-search-page" class="search-input" value="${escapeHTML(term)}" placeholder="Search your workspace…"><div class="search-list">${rows.length?rows.map(r=>`<button class="search-item" data-action="open-search-result" data-kind="${r.kind}" data-id="${r.id}"><span>${({file:'▤',note:'✎',bookmark:'↗',event:'▦',task:'☑'})[r.kind]}</span><div><strong>${escapeHTML(r.title)}</strong><small>${r.kind} · ${dateLabel(r.updated_at)}</small></div><b>›</b></button>`).join(''):'<div class="empty-state">No local matches found.</div>'}</div>`;}
