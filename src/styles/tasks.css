@@ -1,0 +1,2 @@
+/* tasks feature styles */
+.task-row[hidden]{display:none}.task-row:hover{background:color-mix(in srgb,var(--surface-2) 70%,transparent)}
