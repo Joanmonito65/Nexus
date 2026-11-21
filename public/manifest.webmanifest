@@ -1,0 +1,11 @@
+{
+  "name": "NEXUS Browser",
+  "short_name": "NEXUS",
+  "description": "A local-first personal digital workspace.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10131b",
+  "theme_color": "#10131b",
+  "icons": []
+}
