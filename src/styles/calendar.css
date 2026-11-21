@@ -1,0 +1,2 @@
+/* calendar feature styles */
+.calendar-cell{position:relative}.calendar-cell:hover{background:var(--surface-2)}.inline-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
