@@ -1,0 +1,2 @@
+/* bookmarks feature styles */
+.bookmark-card[hidden]{display:none}.bookmark-card:hover{border-color:var(--accent)}
