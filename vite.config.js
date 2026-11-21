@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'vite';
 
 const isolationHeaders = {
@@ -8,12 +9,21 @@ const isolationHeaders = {
 
 export default defineConfig({
   base: './',
-  optimizeDeps: { exclude: ['@sqlite.org/sqlite-wasm'] },
-  server: { headers: isolationHeaders },
-  preview: { headers: isolationHeaders },
+
+  optimizeDeps: {
+    exclude: ['@sqlite.org/sqlite-wasm']
+  },
+
+  server: {
+    headers: isolationHeaders
+  },
+
+  preview: {
+    headers: isolationHeaders
+  },
+
   build: {
     target: 'es2022',
-    sourcemap: true,
-    rollupOptions: { output: { manualChunks: { sqlite: ['@sqlite.org/sqlite-wasm'], zip: ['jszip'] } } }
+    sourcemap: true
   }
 });
