@@ -1,0 +1,13 @@
+{
+  "name": "NEXUS — Private Workspace",
+  "short_name": "NEXUS",
+  "description": "A local-first personal workspace in your browser.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#f5f6f8",
+  "icons": [
+    { "src": "nexus-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
