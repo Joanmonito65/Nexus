@@ -1,7 +1,0 @@
-import { database } from '../database/database.js';
-import { escapeHTML, dateLabel } from '../utils/helpers.js';
-
-export async function renderBookmarks() {
- const rows=await database.query('SELECT * FROM bookmarks WHERE deleted_at IS NULL ORDER BY starred DESC,updated_at DESC');
- return `<div class="page-heading"><div><div class="eyebrow">SAVED FOR LATER</div><h1>Bookmarks</h1><p>Your saved websites and useful links. Favicon requests are not made automatically.</p></div><button class="btn primary" data-action="new-bookmark">＋ Add bookmark</button></div><div class="toolbar"><input id="bookmark-filter" class="search-input compact" placeholder="Search bookmarks…"><span class="muted">${rows.length} saved links</span></div><div class="bookmark-grid" id="bookmark-grid">${rows.length?rows.map(b=>`<article class="bookmark-card" data-searchable="${escapeHTML((b.title+' '+b.url+' '+b.description).toLowerCase())}"><div class="bookmark-top"><span class="bookmark-favicon">↗</span><button class="icon-btn" data-action="star-bookmark" data-id="${b.id}">${b.starred?'★':'☆'}</button></div><h3>${escapeHTML(b.title)}</h3><a href="${escapeHTML(b.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(b.url)}</a><p>${escapeHTML(b.description)}</p><div class="bookmark-foot"><small>${escapeHTML(b.folder)} · ${dateLabel(b.updated_at)}</small><button class="icon-btn danger" data-action="delete-bookmark" data-id="${b.id}">×</button></div></article>`).join(''):'<div class="panel empty-state">No bookmarks yet. Save a website to keep it close.</div>'}</div>`;
-}
