@@ -1017,6 +1017,89 @@ html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwat
 .nexus-color-swatch-cell>button[data-nexus-color-action=remove-saved] svg{width:12px;height:12px}
 @media(max-width:460px){.nexus-color-popover .nexus-color-swatches{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.nexus-color-popover .nexus-color-swatch-cell>button:first-child{height:44px;min-height:44px}}
 
+/* Match the reference stopwatch's primary control size and fullscreen composition. */
+#timeStopwatchPanel .stopwatch-main-button{
+  box-sizing:border-box;
+  width:max-content;
+  max-width:calc(100vw - 24px);
+  min-width:0;
+  height:auto;
+  min-height:46px;
+  padding:14px 24px;
+  border-radius:30px;
+  font-size:15px;
+  font-weight:700;
+  line-height:normal;
+  white-space:nowrap;
+}
+
+html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-readout-group,
+body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-readout-group{
+  top:50%!important;
+  left:50%!important;
+  width:calc(100vw - 36px)!important;
+  max-width:calc(100vw - 36px)!important;
+  transform:translate(-50%,-50%)!important;
+}
+
+html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-readout-group .time-stopwatch-display,
+body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-readout-group .time-stopwatch-display{
+  font-size:clamp(60px,15vw,180px)!important;
+  font-weight:650!important;
+  letter-spacing:-5px!important;
+}
+
+html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-main-button,
+body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-main-button{
+  top:auto!important;
+  right:auto!important;
+  bottom:calc(125px + env(safe-area-inset-bottom))!important;
+  left:50%!important;
+  width:max-content!important;
+  max-width:calc(100vw - 24px)!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:46px!important;
+  margin:0!important;
+  padding:14px 24px!important;
+  border-radius:30px!important;
+  font-size:15px!important;
+  font-weight:700!important;
+  line-height:normal!important;
+  transform:translateX(-50%)!important;
+}
+
+html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-main-button:hover,
+html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-main-button:focus-visible,
+html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-main-button:active,
+body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-main-button:hover,
+body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-main-button:focus-visible,
+body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-main-button:active{
+  transform:translateX(-50%)!important;
+}
+
+@media(max-width:600px){
+  html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-readout-group,
+  body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-readout-group{
+    width:calc(100vw - 20px)!important;
+    max-width:calc(100vw - 20px)!important;
+  }
+  html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-readout-group .time-stopwatch-display,
+  body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-readout-group .time-stopwatch-display{
+    font-size:clamp(48px,15vw,100px)!important;
+    letter-spacing:-3px!important;
+  }
+}
+
+@media(max-height:520px){
+  html:fullscreen body.stopwatch-fullscreen-mode #app #timeStopwatchPanel .stopwatch-main-button,
+  body.stopwatch-expanded-mode #app #timeStopwatchPanel .stopwatch-main-button{
+    bottom:calc(66px + env(safe-area-inset-bottom))!important;
+    min-height:38px!important;
+    padding:10px 20px!important;
+  }
+}
+
 
 
 
